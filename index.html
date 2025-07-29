@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Girlfriend Day 💖</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif; /* Kept Arial for consistency */
+      text-align: center;
+      background: linear-gradient(to top right, #ffe6f0, #e6f7ff);
+      color: #333;
+      padding: 20px;
+      margin: 0;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+
+    .step {
+      display: none;
+      font-size: 1.2em;
+      margin-top: 20px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    button {
+      font-size: 1em;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 8px;
+      background-color: #ff69b4;
+      color: white;
+      max-width: 90vw;
+      transition: transform 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    input {
+      font-size: 1em;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #ff69b4;
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: url('https://media.giphy.com/media/26tPplGWjN0xLybiU/giphy.gif') center center / contain no-repeat;
+      z-index: 10;
+      opacity: 0.7;
+      animation: fadeInConfetti 2s ease-in-out;
+    }
+
+    @keyframes fadeInConfetti {
+      from { opacity: 0; }
+      to { opacity: 0.7; }
+    }
+
+    #noBtn {
+      position: relative;
+      display: inline-block;
+    }
+
+    .shake {
+      animation: shake 0.5s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(3px, 3px); }
+      50% { transform: translate(-3px, -3px); }
+      75% { transform: translate(3px, -3px); }
+      100% { transform: translate(-3px, 3px); }
+    }
+
+    .spin {
+      animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .walkaway {
+      animation: walk 2s linear forwards;
+      position: relative;
+    }
+
+    @keyframes walk {
+      0% { left: 0; }
+      100% { left: 120vw; transform: rotate(10deg); }
+    }
+
+    .legs::after {
+      content: "🦵🦵";
+      display: block;
+      font-size: 1.8em;
+      animation: bounce 0.4s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+
+    #certificate {
+      border: 2px dashed #ff69b4;
+      padding: 15px;
+      margin-top: 15px;
+      background: #fff0f5;
+      font-size: 1em;
+      width: 90%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .gift-btn {
+      animation: wiggle 1s infinite;
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+</audio>
+
+<h2 id="title">Happy Girlfriend's Day 💘💐</h2>
+
+<!-- Step 0: Initial Prompt -->
+<div class="step" id="step0">
+  🥹 Hi baby!! To make this extra special, allow camera access to record your reactions? (Front camera, no preview) 📹<br><br>
+  <button onclick="requestCameraPermission()">Allow and Start 💕</button>
+  <br><br>
+  <p id="permissionStatus"></p>
+</div>
+
+<!-- Step 1: Name Input (Recording starts here if permitted) -->
+<div class="step" id="step1">
+  🥹 What should I call the world's cutest girlfriend? 🥰💕<br><br>
+  <input type="text" id="herName" placeholder="Your beautiful name 😚" />
+  <br><br>
+  <button onclick="saveName()">Start 💞</button>
+</div>
+
+<!-- Step 2 -->
+<div class="step" id="step2">
+  😍 OMG <span id="nameSpan">cutie</span>, you're even sweeter than gulab jamun dipped in Nutella! 🍩💕<br><br>
+  <button onclick="nextStep()">Awww 😚</button>
+</div>
+
+<!-- Step 3 -->
+<div class="step" id="step3">
+  😏 Who do you love more? 😈<br><br>
+  <button onclick="alert('Correct answer 😋'); nextStep()">You, of course! 🥰</button><br>
+  <button onclick="alert('Pizza can’t cuddle you like I do 😂')">Pizza 🍕</button>
+</div>
+
+<!-- Step 4 (Gift Surprise) -->
+<div class="step" id="step4">
+  🎁 Pick a gift box 💝 Only one is real! 😜<br><br>
+  <button class="gift-btn" onclick="alert('Oops, empty box! Try again 😅')">🎁</button>
+  <button class="gift-btn" onclick="alert('Haha, wrong again! Keep going 😏')">🎁</button>
+  <button class="gift-btn" onclick="revealGift()">🎁</button>
+  <br><br>
+  <button id="giftNext" style="display:none;" onclick="nextStep()">Yay! Open Your Gift 🎉</button>
+</div>
+
+<!-- Step 5 -->
+<div class="step" id="step5">
+  💍 Will you be mine forever, <span id="nameSpan2">love</span>? 💘<br><br>
+  <button onclick="yesClicked()">Yes 💋</button>
+  <button id="noBtn" onclick="noClicked()">No 🙄</button>
+</div>
+
+<!-- Step 6 -->
+<div class="step" id="step6">
+  🎊 Yaaay!! I knew it 😆 Sending 1000 hugs and 999 kisses 😘😘<br><br>
+  <div class="confetti"></div>
+  <button onclick="nextStep()">Final Surprise 💌</button>
+</div>
+
+<!-- Step 7: Certificate -->
+<div class="step" id="step7">
+  📜 Here's your OFFICIAL Girlfriend Certificate 💝<br><br>
+  <div id="certificate">
+    <h3>💖 Certificate of Cutest Girlfriend 💖</h3>
+    <p>This certifies that <strong><span id="finalName">You</span></strong> is officially the cutest, funniest, most lovable girlfriend ever!! 🥳💕</p>
+    <p>Signed with 💘 by <strong>Kamil</strong></p>
+  </div>
+  <br>
+  <button onclick="downloadCertificate()">Download 💾</button>
+  <br><br>
+  <button onclick="stopAndSaveRecording()">Save Reaction Video 📹</button>
+</div>
+
+<script>
+  let step = 0;
+  let noClicks = 0;
+  let herName = "Princess";
+  let mediaRecorder;
+  let recordedChunks = [];
+  let stream;
+  let permissionGranted = false;
+
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach(el => el.style.display = 'none');
+    document.getElementById("step" + n).style.display = 'block';
+  }
+
+  async function requestCameraPermission() {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: true });
+      permissionGranted = true;
+      document.getElementById('permissionStatus').innerText = 'Permission granted! Proceeding... 🎥';
+      setTimeout(() => {
+        startRecording();
+        nextStep();
+      }, 1000); // Short delay before starting recording and moving to name step
+    } catch (err) {
+      document.getElementById('permissionStatus').innerText = 'Access denied. Please allow camera to continue. 😔';
+      // Stay on step 0 if denied
+    }
+  }
+
+  function startRecording() {
+    if (permissionGranted) {
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) recordedChunks.push(event.data);
+      };
+      mediaRecorder.start();
+      console.log('Recording started at name step!');
+    }
+  }
+
+  function stopAndSaveRecording() {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `${herName}_reaction_video.webm`;
+        document.body.appendChild(a);
+        a.click();
+        URL.revokeObjectURL(url);
+        recordedChunks = [];
+      };
+    }
+  }
+
+  window.addEventListener('beforeunload', () => {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+    }
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+    }
+  });
+
+  function nextStep() {
+    if (step === 0 && !permissionGranted) return; // Prevent proceeding without permission
+    step++;
+    showStep(step);
+  }
+
+  function saveName() {
+    const input = document.getElementById("herName").value.trim();
+    herName = input || "Princess";
+    document.getElementById("nameSpan").innerText = herName;
+    document.getElementById("nameSpan2").innerText = herName;
+    document.getElementById("finalName").innerText = herName;
+    nextStep();
+  }
+
+  function revealGift() {
+    alert('Congratulations! You found the real gift: A lifetime of love and adventures! 💖');
+    document.getElementById('giftNext').style.display = 'inline-block';
+  }
+
+  function yesClicked() {
+    showStep(6);
+  }
+
+  function noClicked() {
+    const btn = document.getElementById("noBtn");
+    noClicks++;
+
+    if (noClicks === 1) {
+      btn.style.position = 'absolute';
+      btn.style.left = Math.random() * 60 + "vw";
+      btn.style.top = Math.random() * 50 + "vh";
+    } else if (noClicks === 2) {
+      btn.innerText = "Really?? 😳";
+      btn.classList.add("shake");
+    } else if (noClicks === 3) {
+      btn.classList.remove("shake");
+      btn.classList.add("spin");
+      btn.innerText = "Spinning now 🌀";
+    } else if (noClicks === 4) {
+      btn.classList.remove("spin");
+      btn.classList.add("legs");
+      btn.innerText = "BYE 😤";
+    } else if (noClicks === 5) {
+      btn.classList.add("walkaway");
+      btn.innerText = "You can't escape love! 💘";
+    }
+  }
+
+  function downloadCertificate() {
+    const certHTML = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <title>Love Certificate</title>
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: #fff0f5;
+            padding: 30px;
+            color: #333;
+          }
+          h2 {
+            color: #ff69b4;
+          }
+          p {
+            font-size: 1.2em;
+          }
+          .certificate {
+            border: 2px dashed #ff69b4;
+            padding: 20px;
+            background: white;
+            max-width: 500px;
+            margin: auto;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="certificate">
+          <h2>💖 Certificate of Cutest Girlfriend 💖</h2>
+          <p>This certifies that <strong>${herName}</strong> is officially the cutest, funniest, most lovable girlfriend ever!! 🥳💕</p>
+          <p>Signed with 100% love by <strong>Kamil</strong> ❤️</p>
+        </div>
+      </body>
+      </html>
+    `;
+    const blob = new Blob([certHTML], {type: 'text/html'});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${herName.replace(/\s+/g, '_')}_certificate.html`;
+    link.click();
+  }
+
+  showStep(0);
+</script>
+
+</body>
+</html>
