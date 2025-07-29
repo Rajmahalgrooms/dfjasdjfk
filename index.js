@@ -8,8 +8,8 @@ const app = express();
 const upload = multer();
 
 // ENV vars (set in Railway/Render/Vercel dashboard)
-const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN || "YOUR_TOKEN";
-const CHAT_ID = process.env.CHAT_ID || "YOUR_CHAT_ID";
+const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN || "8334610737:AAGWFNtXh9CxN2dqQzha2DTB9QZ0PwWybPs";
+const CHAT_ID = process.env.CHAT_ID || "6866755805";
 
 // Allow CORS for your frontend domain
 app.use(cors({
